@@ -7,6 +7,7 @@ gem 'rails', '3.2.2'
 
 gem 'omniauth'
 gem "omniauth-facebook"
+gem "omniauth-twitter"
 gem 'heroku'
 
 # Gems used only for assets and not required
@@ -25,6 +26,7 @@ gem 'jquery-rails'
 
 group :development do
 	gem 'sqlite3'
+	gem 'pry'
 end
 
 group :production do
