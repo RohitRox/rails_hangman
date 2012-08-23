@@ -1,4 +1,10 @@
 RailsHangman::Application.routes.draw do
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/failure"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -50,6 +56,11 @@ RailsHangman::Application.routes.draw do
   # just remember to delete public/index.html.
   
     root :to => 'home#index'
+
+    get   '/login', :to => 'sessions#new', :as => :login
+    match '/auth/:provider/callback', :to => 'sessions#create'
+    match '/auth/failure', :to => 'sessions#failure'
+    get '/logout', :to => 'sessions#destroy'
 
   # See how all your routes lay out with "rake routes"
 
