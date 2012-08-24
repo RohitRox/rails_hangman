@@ -11,7 +11,8 @@ function win () {
     $.ajax({
       type: "POST",
       url: "/win/broadcast",
-      data: { score: 23, category: "sports" }
+      data: { score: 23, category: "sports" },
+      dataType: "script"
     });
 }
 
