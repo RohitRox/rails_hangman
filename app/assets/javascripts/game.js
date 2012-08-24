@@ -9,7 +9,7 @@ function resetGame () {
 function win () {
  resetGame() ;
     $.ajax({
-      type: "POST",
+      type: "GET",
       url: "/win/broadcast",
       data: { score: 23, category: "sports" },
       dataType: "script"
