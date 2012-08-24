@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
  
     # Create the session
     session[:user_id] = auth.user.id
- 
-    render :text => "Welcome #{auth.user.name}!"
+    session[:auth_id] = auth.id
+    redirect_to root_path, notice: "Welcome #{auth.user.name}."
   end
 
   end
@@ -27,7 +27,8 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
-  	render :text => "You've logged out!"
+    session[:auth_id] = nil
+    redirect_to root_path, notice: 'You have logged out'
   end
 
 end

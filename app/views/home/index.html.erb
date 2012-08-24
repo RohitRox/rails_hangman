@@ -1,4 +1,19 @@
+<%- flash.each do |name, msg| -%>
+<%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash_messages alert" unless msg.blank? %>
+<%= content_tag :script, :type => "text/javascript" do -%>
+$("#flash_<%= name %>").delay(5000).fadeOut(1250, function() {$(this).remove();});
+$("#flash_<%= name %>").click(function(){$(this).remove();});
+<% end %>
+<% end %>
 
+
+<% if current_user %>
+<img src="<%= current_user.auth.image %>"/> Welcome <%=current_user.name %>
+<%= link_to "Logout", "/logout" %>
+<% else %>
+<%= link_to "Connect With Facebook", "/auth/facebook" %>
+<%= link_to "Connect With Twitter", "/auth/twitter" %>
+<% end %>
     <div class='topmatter'> <!-- encloses topmatter -->
       <div class='hang-container'>
         <div class='scaffolding-top'></div>

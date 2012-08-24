@@ -6,8 +6,19 @@ function resetGame () {
     drawWord(gameShownAnswer);    
 }
 
-function win () { alert('You win!');  resetGame() ;}
-function lose () { alert('Oh no, you lose!'); resetGame(); }
+function win () {
+ resetGame() ;
+    $.ajax({
+      type: "POST",
+      url: "/win/broadcast",
+      data: { score: 23, category: "sports" }
+    });
+}
+
+function lose () {
+ alert('Oh no, you lose!'); resetGame(); 
+}
+
 function doKeypress () {
     var tempChar = $('#letter-input').val().toLowerCase();
     var tempString = "";
@@ -34,4 +45,13 @@ $(document).ready(function(){
     resetGame();
     $('#letter-input').keyup( function(){ doKeypress() } );
 
+
+
+});
+
+$(function() {
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe('/messages/new', function (data) {
+    eval(data);
+  });
 });

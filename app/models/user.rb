@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 	Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
 	end
 	end
+
+	def auth
+		self.authorizations.find(self.id)
+	end
 end

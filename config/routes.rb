@@ -1,9 +1,5 @@
 RailsHangman::Application.routes.draw do
-  get "sessions/new"
 
-  get "sessions/create"
-
-  get "sessions/failure"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -61,6 +57,7 @@ RailsHangman::Application.routes.draw do
     match '/auth/:provider/callback', :to => 'sessions#create'
     match '/auth/failure', :to => 'sessions#failure'
     get '/logout', :to => 'sessions#destroy'
+    get  '/win/broadcast', :to => 'users#broadcast'
 
   # See how all your routes lay out with "rake routes"
 
